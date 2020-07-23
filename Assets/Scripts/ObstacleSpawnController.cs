@@ -29,7 +29,8 @@ public class ObstacleSpawnController : MonoBehaviour
     int randomLaneIndex = 0;
     public int obstaclesPerWave;
     int obstacleCounter;
-        
+
+    public bool isSpawning = false;
     bool waveFinished = false;
     bool waveReady = false;
 
