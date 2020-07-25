@@ -6,9 +6,10 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 10f;
-    public float jumpHeight = 0f;
-    public float jumpAccelerationPerSecond = 6f;
-    public float maxJumpHeight = 3f;
+    float jumpHeight = 0f;
+    public float jumpAccelerationPerSecond;
+    public float maxJumpHeight;
+    float minJumpHeight = 0f;
 
     public Rigidbody2D rb;
     public SpriteRenderer sp;
@@ -20,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     float xBounds = 8f;
     float yBounds = 2.5f;
     float objWidth;
-    float objHeight;    
+    float objHeight;
 
     public bool isJumping = false;
     public bool isLanding = false;
@@ -63,9 +64,9 @@ public class PlayerMovement : MonoBehaviour
     {
         isJumping = true;
 
-        if (jumpHeight <= maxJumpHeight)
+        if (jumpHeight < maxJumpHeight)
         {
-            jumpHeight += jumpAccelerationPerSecond * Time.deltaTime;
+            jumpHeight = Mathf.Clamp(jumpHeight + jumpAccelerationPerSecond * Time.deltaTime, minJumpHeight, maxJumpHeight);
             UpdateJumpPosition(jumpHeight);
         }
         else
@@ -80,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (jumpHeight > 0)
         {
-            jumpHeight -= jumpAccelerationPerSecond * Time.deltaTime;
+            jumpHeight = Mathf.Clamp(jumpHeight - jumpAccelerationPerSecond * Time.deltaTime, minJumpHeight, maxJumpHeight);
             UpdateJumpPosition(jumpHeight);
         }
         else
@@ -97,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator LandAndJumpDelay()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.15f);
         isLanding = false;
         isJumping = false;
     }

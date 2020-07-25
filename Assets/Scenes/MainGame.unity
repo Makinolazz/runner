@@ -731,7 +731,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   jumpHeight: 0
-  jumpAccelerationPerSecond: 5
+  jumpAccelerationPerSecond: 4.5
   maxJumpHeight: 2
   rb: {fileID: 1279250770}
   sp: {fileID: 1079353070}
