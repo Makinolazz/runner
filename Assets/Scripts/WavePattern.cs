@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum LanePositions
+public enum LanePosition
 {
     Top,
     Mid,
@@ -11,10 +11,6 @@ public enum LanePositions
 
 public class WavePattern : MonoBehaviour
 {
-    public List<LanePositions> pattern;
+    public List<LanePosition> pattern;
 
-    public int GetPosValue(int index)
-    {
-        return (int)pattern[index];
-    }
 }

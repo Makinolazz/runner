@@ -19,7 +19,7 @@ public class ObstacleSpawnController : MonoBehaviour
 
     public GameObject obstacle;
     public List<GameObject> laneSpawners;
-    //public GameObject wavePatternObject;
+    public List<GameObject> wavePatternList;
         
     float defaultObstacleSpeed = 5f;
     public float increaseSpeedBy = 1f;
@@ -42,19 +42,51 @@ public class ObstacleSpawnController : MonoBehaviour
         _instance = this;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         speedAmountToAdd = defaultObstacleSpeed;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        SpawnObstacle();
+        //SpawnObstacle();
+
+        //when mouse click, GameController send the order to start spawning
+        if (isSpawning)
+        {            
+            StartSpawningProcess();
+            isSpawning = false;
+        }
                 
     }
 
+    private void StartSpawningProcess()
+    {
+        //selects a pattern randomly
+        int patternIndex = UnityEngine.Random.Range(0, wavePatternList.Count - 1);
+        var pattern = wavePatternList[patternIndex].GetComponent<WavePattern>().pattern;
+
+        StartCoroutine(StartObstacleSpawn(pattern));
+    }
+
+    IEnumerator StartObstacleSpawn(List<LanePosition> lanePosition)
+    {
+        foreach (var lane in lanePosition)
+        {
+            GetObstacleFromPool(lane);
+            yield return new WaitForSeconds(1);
+        }               
+        
+    }
+
+    private void GetObstacleFromPool(LanePosition lanePosition)
+    {
+        GameObject obstacle = ObstaclePoolController.Instance.RequestObstacle();
+        obstacle.GetComponent<Obstacle>().SetSpeed(speedAmountToAdd);
+        obstacle.transform.position = laneSpawners[(int)lanePosition].transform.position;
+    }
+
+    /*
     void SpawnObstacle()
     {
         if (spawnTimer <= 0)
@@ -122,4 +154,6 @@ public class ObstacleSpawnController : MonoBehaviour
         speedAmountToAdd += increaseSpeedBy;
         waveFinished = false;
     }
+    */
+
 }
