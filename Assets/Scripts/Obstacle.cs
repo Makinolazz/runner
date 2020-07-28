@@ -3,9 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ObstacleType
+{
+    TallWall,
+    SmallWall,
+    GroundBarrier,
+    AirBarrier,
+    GroundRamp,
+    AirRamp,
+    ShortPit,
+    MidPit,
+    LongPit
+}
+
 public class Obstacle : MonoBehaviour
 {
+    public ObstacleType obstacleType;
     public float speed = 0;
+    public float height;
     
     private void Update()
     {

@@ -850,7 +850,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleContainer: {fileID: 561038}
-  obstaclePrefab: {fileID: 5395641223492669965, guid: dcf9761560ca68d49bd5b2eeffeb60df,
+  obstaclePrefab: {fileID: 6121651115362264277, guid: 0037023d2ac73b24186193718ec375a5,
     type: 3}
   obstaclePool: []
 --- !u!1 &2086476436
