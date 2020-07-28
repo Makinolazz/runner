@@ -17,7 +17,7 @@ public class ObstacleSpawnController : MonoBehaviour
         }
     }
 
-    public GameObject obstacle;
+    //public GameObject obstacle;
     public List<GameObject> laneSpawners;
     public List<GameObject> wavePatternList;
         
@@ -63,28 +63,50 @@ public class ObstacleSpawnController : MonoBehaviour
     private void StartSpawningProcess()
     {
         //selects a pattern randomly
-        int patternIndex = UnityEngine.Random.Range(0, wavePatternList.Count - 1);
+        int patternIndex = UnityEngine.Random.Range(0, wavePatternList.Count);
         var pattern = wavePatternList[patternIndex].GetComponent<WavePattern>().pattern;
+        var obstacle = wavePatternList[patternIndex].GetComponent<WavePattern>();
 
-        StartCoroutine(StartObstacleSpawn(pattern));
+        //StartCoroutine(StartObstacleSpawn(pattern));
+        StartCoroutine(StartObstacleSpawn(obstacle));
     }
-
-    IEnumerator StartObstacleSpawn(List<LanePosition> lanePosition)
+    
+    IEnumerator StartObstacleSpawn(WavePattern wavePattern)
     {
-        foreach (var lane in lanePosition)
+
+        for (int i = 0; i < wavePattern.amountOfObstacles; i++)
         {
-            GetObstacleFromPool(lane);
+            var lanePosition = wavePattern.pattern[i];
+            var obstacleType = wavePattern.obstacle[i];
+            GetObstacleFromPool(lanePosition, obstacleType);
             yield return new WaitForSeconds(1);
-        }               
-        
-    }
+        }
 
-    private void GetObstacleFromPool(LanePosition lanePosition)
+    }
+    
+    //IEnumerator StartObstacleSpawn(List<LanePosition> lanePosition)
+    //{
+    //    foreach (var lane in lanePosition)
+    //    {
+    //        //GetObstacleFromPool(lane);
+    //        yield return new WaitForSeconds(1);
+    //    }               
+        
+    //}
+
+    private void GetObstacleFromPool(LanePosition lanePosition, ObstacleType obstacleType)
     {
-        GameObject obstacle = ObstaclePoolController.Instance.RequestObstacle();
+        GameObject obstacle = ObstaclePoolController.Instance.RequestObstacle(obstacleType);
         obstacle.GetComponent<Obstacle>().SetSpeed(speedAmountToAdd);
         obstacle.transform.position = laneSpawners[(int)lanePosition].transform.position;
     }
+
+    //private void GetObstacleFromPool(LanePosition lanePosition)
+    //{
+    //    GameObject obstacle = ObstaclePoolController.Instance.RequestObstacle();
+    //    obstacle.GetComponent<Obstacle>().SetSpeed(speedAmountToAdd);
+    //    obstacle.transform.position = laneSpawners[(int)lanePosition].transform.position;
+    //}
 
     /*
     void SpawnObstacle()

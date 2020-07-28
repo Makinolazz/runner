@@ -493,14 +493,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c36c96148372d764b8a1076b458460c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacle: {fileID: 5395641223492669965, guid: dcf9761560ca68d49bd5b2eeffeb60df,
-    type: 3}
   laneSpawners:
   - {fileID: 231439481}
   - {fileID: 2086476436}
   - {fileID: 663373751}
   wavePatternList:
-  - {fileID: 7679968259626227499, guid: 7baa22fed212e2c4da9825309274597b, type: 3}
+  - {fileID: 7679968259626227499, guid: 76781cdf46019844aa32940459e00df9, type: 3}
+  - {fileID: 7679968259626227499, guid: 9dd3059e1ce323d4495a6cab3c4bb305, type: 3}
+  - {fileID: 7679968259626227499, guid: 8335fdf47608ae946aefa9dd5eb6b2b0, type: 3}
+  - {fileID: 7679968259626227499, guid: 012b1cfe65115f44585f37c9b191495c, type: 3}
   increaseSpeedBy: 2
   maxObstacleSpeed: 20
   obstaclesPerWave: 10
@@ -850,8 +851,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleContainer: {fileID: 561038}
-  obstaclePrefab: {fileID: 6121651115362264277, guid: 0037023d2ac73b24186193718ec375a5,
-    type: 3}
+  obstaclePrefabList:
+  - {fileID: 995623158548618917, guid: b5e04b333f28c6241b915aa30236de24, type: 3}
+  - {fileID: 6180423909371555275, guid: a02026bf1ca47274da65e02faa9c5b1b, type: 3}
+  - {fileID: 8668019445785502712, guid: 1a035d4e22760304982a30b5f671f4d7, type: 3}
+  - {fileID: 3408002233228178660, guid: dc1ae56434803e444a55dcad7c90945c, type: 3}
+  - {fileID: 4870767309531969402, guid: 563ecfa30623e3547b24bce9a32ba90b, type: 3}
+  - {fileID: 9075292030786549041, guid: 29877ffb567699b49adbfeb64f829c5c, type: 3}
+  - {fileID: 4645126033884638716, guid: e4fe99e80cb4e6e4a9770871937200cf, type: 3}
+  - {fileID: 2767432008279985655, guid: 96a7bc9ee8a0cbb4c96740b3a5116372, type: 3}
+  - {fileID: 6121651115362264277, guid: 0037023d2ac73b24186193718ec375a5, type: 3}
   obstaclePool: []
 --- !u!1 &2086476436
 GameObject:

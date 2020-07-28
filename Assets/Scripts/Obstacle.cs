@@ -3,18 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ObstacleType
-{
-    TallWall,
-    SmallWall,
-    GroundBarrier,
-    AirBarrier,
-    GroundRamp,
-    AirRamp,
-    ShortPit,
-    MidPit,
-    LongPit
-}
 
 public class Obstacle : MonoBehaviour
 {
@@ -28,7 +16,7 @@ public class Obstacle : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {        
+    {
         HideAndRecycle();
     }
 

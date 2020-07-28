@@ -19,8 +19,10 @@ public class ObstaclePoolController : MonoBehaviour
 
     [SerializeField]
     private GameObject obstacleContainer;
+    //[SerializeField]
+    //private GameObject obstaclePrefab;
     [SerializeField]
-    private GameObject obstaclePrefab;
+    private List<GameObject> obstaclePrefabList;
     [SerializeField]
     private List<GameObject> obstaclePool;
 
@@ -32,34 +34,45 @@ public class ObstaclePoolController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        obstaclePool = GenerateObstacles(10);
+        obstaclePool = GenerateObstacles(5);
     }
 
     private List<GameObject> GenerateObstacles(int amountOfObstacles)
     {
-        for (int i = 0; i < amountOfObstacles; i++)
+        foreach (var obstacleItem in obstaclePrefabList)
         {
-            GameObject obstacle = Instantiate(obstaclePrefab);
-            obstacle.transform.parent = obstacleContainer.transform;
-            obstacle.SetActive(false);
-            obstaclePool.Add(obstacle);
+            for (int i = 0; i < amountOfObstacles; i++)
+            {
+                GameObject obstacle = Instantiate(obstacleItem);
+                obstacle.transform.parent = obstacleContainer.transform;
+                obstacle.SetActive(false);
+                obstaclePool.Add(obstacle);
+            }
         }
 
         return obstaclePool;
     }
 
-    public GameObject RequestObstacle()
+    public GameObject RequestObstacle(ObstacleType obstacleType)
     {
-        foreach (var obstacle in obstaclePool)
+        GameObject obstacle = null;
+        foreach (var obstacleItem in obstaclePool)
         {
-            if (obstacle.activeInHierarchy == false)
+            if (obstacleItem.GetComponent<Obstacle>().obstacleType == obstacleType)
             {
-                obstacle.SetActive(true);
-                return obstacle;
+                if (obstacleItem.activeInHierarchy == false)
+                {
+                    obstacleItem.SetActive(true);
+                    return obstacleItem;
+                }
+                else
+                {
+                    obstacle = obstacleItem;
+                }                
             }
         }
 
-        GameObject newObstacle = Instantiate(obstaclePrefab);
+        GameObject newObstacle = Instantiate(obstacle);
         newObstacle.transform.parent = obstacleContainer.transform;
         obstaclePool.Add(newObstacle);
 

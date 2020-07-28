@@ -9,8 +9,23 @@ public enum LanePosition
     Bot
 }
 
+public enum ObstacleType
+{
+    TallWall,
+    SmallWall,
+    GroundBarrier,
+    AirBarrier,
+    GroundRamp,
+    AirRamp,
+    ShortPit,
+    MidPit,
+    LongPit
+}
+
 public class WavePattern : MonoBehaviour
 {
+    [SerializeField] public int amountOfObstacles;
     public List<LanePosition> pattern;
+    public List<ObstacleType> obstacle;
 
 }
