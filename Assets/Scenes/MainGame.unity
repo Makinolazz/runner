@@ -498,14 +498,11 @@ MonoBehaviour:
   - {fileID: 2086476436}
   - {fileID: 663373751}
   wavePatternList:
-  - {fileID: 7679968259626227499, guid: 76781cdf46019844aa32940459e00df9, type: 3}
-  - {fileID: 7679968259626227499, guid: 9dd3059e1ce323d4495a6cab3c4bb305, type: 3}
-  - {fileID: 7679968259626227499, guid: 8335fdf47608ae946aefa9dd5eb6b2b0, type: 3}
-  - {fileID: 7679968259626227499, guid: 012b1cfe65115f44585f37c9b191495c, type: 3}
+  - {fileID: 7679968259626227499, guid: 3108a1893f809ea4b97db5e18f064ba6, type: 3}
   increaseSpeedBy: 2
   maxObstacleSpeed: 20
-  obstaclesPerWave: 10
   isSpawning: 0
+  waveFinished: 0
   timeBtwSpawn: 1
 --- !u!1 &1079353068
 GameObject:
@@ -733,6 +730,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
+  jumpHeight: 0
   jumpAccelerationPerSecond: 4.5
   maxJumpHeight: 2
   rb: {fileID: 1279250770}
@@ -740,6 +738,7 @@ MonoBehaviour:
   body: {fileID: 166621117}
   isJumping: 0
   isLanding: 0
+  isRampJump: 0
 --- !u!50 &1279250770
 Rigidbody2D:
   serializedVersion: 4
@@ -758,7 +757,7 @@ Rigidbody2D:
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!1 &1529752728

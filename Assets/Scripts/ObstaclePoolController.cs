@@ -19,8 +19,6 @@ public class ObstaclePoolController : MonoBehaviour
 
     [SerializeField]
     private GameObject obstacleContainer;
-    //[SerializeField]
-    //private GameObject obstaclePrefab;
     [SerializeField]
     private List<GameObject> obstaclePrefabList;
     [SerializeField]

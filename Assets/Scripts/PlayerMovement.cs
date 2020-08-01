@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 10f;
-    float jumpHeight = 0f;
+    public float jumpHeight = 0f;
     public float jumpAccelerationPerSecond;
     public float maxJumpHeight;
     float minJumpHeight = 0f;
@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isJumping = false;
     public bool isLanding = false;
+    public bool isRampJump = false;
 
     private void Start()
     {
@@ -39,49 +40,71 @@ public class PlayerMovement : MonoBehaviour
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
-        Jump();
+
+        if (isRampJump)
+        {
+            RampJump();
+        }
+        else
+        {
+            Jump();
+        }
     }
-        
+
+    private void RampJump()
+    {
+        //Problem: when is landing cant do Ramp Jump, but seems to be working fine
+        if (!isLanding)
+        {
+            IncreaseJumpHeight(5f);
+
+        }
+        else
+        {
+            DecreaseJumpHeight(5f);
+
+        }
+    }
+
     private void FixedUpdate()
     {
         Move();
-        //Jump();
     }
 
     private void Jump()
     {
         if (Input.GetButton("Jump") && !isLanding)
         {
-            IncreaseJumpHeight();
+            IncreaseJumpHeight(maxJumpHeight);
         }
         else
         {
-            DecreaseJumpHeight();
+            DecreaseJumpHeight(maxJumpHeight);
         }
     }    
 
-    private void IncreaseJumpHeight()
+    private void IncreaseJumpHeight(float jumpHeightLimit)
     {
         isJumping = true;
 
-        if (jumpHeight < maxJumpHeight)
+        if (jumpHeight < jumpHeightLimit)
         {
-            jumpHeight = Mathf.Clamp(jumpHeight + jumpAccelerationPerSecond * Time.deltaTime, minJumpHeight, maxJumpHeight);
+            jumpHeight = Mathf.Clamp(jumpHeight + jumpAccelerationPerSecond * Time.deltaTime, minJumpHeight, jumpHeightLimit);
             UpdateJumpPosition(jumpHeight);
         }
         else
         {
-            DecreaseJumpHeight();
+            DecreaseJumpHeight(jumpHeightLimit);
         }
     }       
 
-    private void DecreaseJumpHeight()
+    private void DecreaseJumpHeight(float jumpHeightLimit)
     {
         isLanding = true;
 
         if (jumpHeight > 0)
         {
-            jumpHeight = Mathf.Clamp(jumpHeight - jumpAccelerationPerSecond * Time.deltaTime, minJumpHeight, maxJumpHeight);
+            jumpHeight = Mathf.Clamp(jumpHeight - jumpAccelerationPerSecond * Time.deltaTime, minJumpHeight, jumpHeightLimit);
             UpdateJumpPosition(jumpHeight);
         }
         else
@@ -98,6 +121,7 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator LandAndJumpDelay()
     {
+        isRampJump = false;
         yield return new WaitForSeconds(0.15f);
         isLanding = false;
         isJumping = false;

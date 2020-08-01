@@ -125,6 +125,8 @@ MonoBehaviour:
   obstacleType: 0
   speed: 5
   height: 1.5
+  isHarmful: 1
+  isAerial: 0
 --- !u!50 &3188858773181586680
 Rigidbody2D:
   serializedVersion: 4

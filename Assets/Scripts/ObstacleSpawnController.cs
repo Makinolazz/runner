@@ -25,13 +25,9 @@ public class ObstacleSpawnController : MonoBehaviour
     public float increaseSpeedBy = 1f;
     float speedAmountToAdd;
     public float maxObstacleSpeed;
-
-    int randomLaneIndex = 0;
-    public int obstaclesPerWave;
-    int obstacleCounter;
-
+    
     public bool isSpawning = false;
-    bool waveFinished = false;
+    public bool waveFinished = false;
     bool waveReady = false;
 
     private float spawnTimer;
@@ -53,7 +49,8 @@ public class ObstacleSpawnController : MonoBehaviour
 
         //when mouse click, GameController send the order to start spawning
         if (isSpawning)
-        {            
+        {
+            waveFinished = false;
             StartSpawningProcess();
             isSpawning = false;
         }
@@ -82,8 +79,15 @@ public class ObstacleSpawnController : MonoBehaviour
             yield return new WaitForSeconds(1);
         }
 
+        StartCoroutine(DelayForNextWave());
     }
     
+    IEnumerator DelayForNextWave()
+    {
+        yield return new WaitForSeconds(2);
+        waveFinished = true;
+    }
+
     //IEnumerator StartObstacleSpawn(List<LanePosition> lanePosition)
     //{
     //    foreach (var lane in lanePosition)
@@ -91,7 +95,7 @@ public class ObstacleSpawnController : MonoBehaviour
     //        //GetObstacleFromPool(lane);
     //        yield return new WaitForSeconds(1);
     //    }               
-        
+
     //}
 
     private void GetObstacleFromPool(LanePosition lanePosition, ObstacleType obstacleType)
