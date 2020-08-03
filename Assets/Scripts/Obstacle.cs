@@ -31,7 +31,6 @@ public class Obstacle : MonoBehaviour
         
     }
 
-
     private void HideAndRecycle()
     {
         this.gameObject.SetActive(false);
@@ -40,5 +39,10 @@ public class Obstacle : MonoBehaviour
     public void SetSpeed(float amount)
     {
         speed = amount;
+    }
+
+    public void StopMovement()
+    {
+        speed = 0f; ;    
     }
 }

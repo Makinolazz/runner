@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour
     public GameObject obstacleSpawner;
     public GameObject player;
     private ObstacleSpawnController spawnerController;
+    private bool isGameOver = false;
 
     private void Awake()
     {
@@ -35,14 +36,13 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //to test spawning activation with jump key pressing
+        //to test spawning activation with left click
         if (Input.GetMouseButtonDown(0))
         {
-            //obstacleSpawner.GetComponent<ObstacleSpawnController>().isSpawning = true;
             spawnerController.isSpawning = true;
         }
 
-        if (spawnerController.waveFinished == true)
+        if (spawnerController.waveFinished == true && !isGameOver)
         {
             spawnerController.isSpawning = true;
         }
@@ -54,7 +54,7 @@ public class GameController : MonoBehaviour
         {
             //To do, handle collision
             bool isCollision = CalculateHeight(isAerial, height);
-            Debug.Log(isCollision);
+            ProcessGameOver(isCollision);
         }
         else if (!isHarmful)
         {
@@ -62,6 +62,16 @@ public class GameController : MonoBehaviour
             bool isCollision = CalculateHeight(isAerial, height);
             ProcessRampJump(isCollision);
         }
+    }
+
+    private void ProcessGameOver(bool isCollision)
+    {
+        if (isCollision)
+        {
+            //something
+            isGameOver = true;
+            spawnerController.ForceStopSpawning();
+        };
     }
 
     private void ProcessRampJump(bool isCollision)

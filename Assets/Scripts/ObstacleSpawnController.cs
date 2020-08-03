@@ -28,9 +28,8 @@ public class ObstacleSpawnController : MonoBehaviour
     
     public bool isSpawning = false;
     public bool waveFinished = false;
-    bool waveReady = false;
+    private bool isGameOver = false;
 
-    private float spawnTimer;
     public float timeBtwSpawn;
 
     private void Awake()
@@ -45,8 +44,6 @@ public class ObstacleSpawnController : MonoBehaviour
 
     void Update()
     {
-        //SpawnObstacle();
-
         //when mouse click, GameController send the order to start spawning
         if (isSpawning)
         {
@@ -75,7 +72,10 @@ public class ObstacleSpawnController : MonoBehaviour
         {
             var lanePosition = wavePattern.pattern[i];
             var obstacleType = wavePattern.obstacle[i];
-            GetObstacleFromPool(lanePosition, obstacleType);
+            if (!isGameOver)
+            {
+                GetObstacleFromPool(lanePosition, obstacleType);
+            }
             yield return new WaitForSeconds(1);
         }
 
@@ -87,17 +87,7 @@ public class ObstacleSpawnController : MonoBehaviour
         yield return new WaitForSeconds(2);
         waveFinished = true;
     }
-
-    //IEnumerator StartObstacleSpawn(List<LanePosition> lanePosition)
-    //{
-    //    foreach (var lane in lanePosition)
-    //    {
-    //        //GetObstacleFromPool(lane);
-    //        yield return new WaitForSeconds(1);
-    //    }               
-
-    //}
-
+    
     private void GetObstacleFromPool(LanePosition lanePosition, ObstacleType obstacleType)
     {
         GameObject obstacle = ObstaclePoolController.Instance.RequestObstacle(obstacleType);
@@ -105,81 +95,17 @@ public class ObstacleSpawnController : MonoBehaviour
         obstacle.transform.position = laneSpawners[(int)lanePosition].transform.position;
     }
 
-    //private void GetObstacleFromPool(LanePosition lanePosition)
-    //{
-    //    GameObject obstacle = ObstaclePoolController.Instance.RequestObstacle();
-    //    obstacle.GetComponent<Obstacle>().SetSpeed(speedAmountToAdd);
-    //    obstacle.transform.position = laneSpawners[(int)lanePosition].transform.position;
-    //}
-
-    /*
-    void SpawnObstacle()
+    public void ForceStopSpawning()
     {
-        if (spawnTimer <= 0)
-        {
-            PlaceObstacle();
-            spawnTimer = timeBtwSpawn;
-        }
-        else
-        {
-            spawnTimer -= Time.deltaTime;
-        }
-
-    }
-
-    private void PlaceObstacle()
-    {
-        if (!waveFinished)
-        {
-            //reduce speed to default if max speed is reached
-            if (speedAmountToAdd > maxObstacleSpeed)
-            {
-                speedAmountToAdd = defaultObstacleSpeed;
-            }
-
-            if (obstacleCounter < obstaclesPerWave)
-            {
-                GetObstacleFromPool();
-                obstacleCounter++;
-            }
-            else if (obstacleCounter == obstaclesPerWave)
-            {
-                waveFinished = true;
-                waveReady = false;
-            }
-        }
-        else if (waveFinished && !waveReady)
-        {
-            StartCoroutine(PrepareNextWave());
-        }
-        
-    }
-
-    private void GetObstacleFromPool()
-    {
-        //Random lane select
-        randomLaneIndex = UnityEngine.Random.Range(0, laneSpawners.Count);
-
-        //int laneIndex = wavePatternObject.GetComponent<WavePattern>().GetPosValue(obstacleCounter);
-
-        GameObject obstacle = ObstaclePoolController.Instance.RequestObstacle();
-        obstacle.GetComponent<Obstacle>().SetSpeed(speedAmountToAdd);
-        obstacle.transform.position = laneSpawners[randomLaneIndex].transform.position;
-    }
-
-    IEnumerator PrepareNextWave()
-    {
-        waveReady = true;
-        yield return new WaitForSeconds(3f);
-        SetWaveValues();
-    }
-
-    private void SetWaveValues()
-    {
-        obstacleCounter = 0;
-        speedAmountToAdd += increaseSpeedBy;
+        isGameOver = true;
+        var obstacleList = FindObjectsOfType<Obstacle>();
+        isSpawning = false;
         waveFinished = false;
+
+        foreach (var obstacle in obstacleList)
+        {
+            obstacle.StopMovement();
+        }
     }
-    */
 
 }
