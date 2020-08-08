@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpHeight = 0f;
     public float jumpAccelerationPerSecond;
     public float maxJumpHeight;
-    float minJumpHeight = 0f;
+    private float minJumpHeight = 0f;
 
     public Rigidbody2D rb;
     public SpriteRenderer sp;
@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+    //Update is called once per frame
     void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
@@ -48,21 +48,6 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             Jump();
-        }
-    }
-
-    private void RampJump()
-    {
-        //Problem: when is landing cant do Ramp Jump, but seems to be working fine
-        if (!isLanding)
-        {
-            IncreaseJumpHeight(5f);
-
-        }
-        else
-        {
-            DecreaseJumpHeight(5f);
-
         }
     }
 
@@ -81,7 +66,22 @@ public class PlayerMovement : MonoBehaviour
         {
             DecreaseJumpHeight(maxJumpHeight);
         }
-    }    
+    }
+
+    private void RampJump()
+    {
+        //Problem: when is landing cant do Ramp Jump, but seems to be working fine
+        if (!isLanding)
+        {
+            IncreaseJumpHeight(5f);
+
+        }
+        else
+        {
+            DecreaseJumpHeight(5f);
+
+        }
+    }
 
     private void IncreaseJumpHeight(float jumpHeightLimit)
     {
@@ -96,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
         {
             DecreaseJumpHeight(jumpHeightLimit);
         }
-    }       
+    }
 
     private void DecreaseJumpHeight(float jumpHeightLimit)
     {

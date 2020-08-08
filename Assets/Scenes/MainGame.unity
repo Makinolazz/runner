@@ -498,7 +498,7 @@ MonoBehaviour:
   - {fileID: 2086476436}
   - {fileID: 663373751}
   wavePatternList:
-  - {fileID: 7679968259626227499, guid: 3108a1893f809ea4b97db5e18f064ba6, type: 3}
+  - {fileID: 7679968259626227499, guid: 339443cdd4fc3f848a1ff2433e2f576a, type: 3}
   increaseSpeedBy: 2
   maxObstacleSpeed: 20
   isSpawning: 0
@@ -731,7 +731,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   jumpHeight: 0
-  jumpAccelerationPerSecond: 4.5
+  jumpAccelerationPerSecond: 3.5
   maxJumpHeight: 2
   rb: {fileID: 1279250770}
   sp: {fileID: 1079353070}

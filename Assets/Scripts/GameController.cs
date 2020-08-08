@@ -91,7 +91,7 @@ public class GameController : MonoBehaviour
         {
             return true;
         }
-        else if (!isAerial && player.GetComponent<PlayerMovement>().jumpHeight < height)
+        else if (!isAerial && player.GetComponent<PlayerMovement>().jumpHeight <= height)
         {
             return true;
         }

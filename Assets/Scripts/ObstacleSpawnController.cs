@@ -103,7 +103,7 @@ public class ObstacleSpawnController : MonoBehaviour
         waveFinished = false;
 
         foreach (var obstacle in obstacleList)
-        {
+        {            
             obstacle.StopMovement();
         }
     }
