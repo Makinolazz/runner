@@ -5,42 +5,52 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 10f;
-    public float jumpHeight = 0f;
-    public float jumpAccelerationPerSecond;
-    public float maxJumpHeight;
-    private float minJumpHeight = 0f;
-
+    //move variables
+    public float moveSpeed;
     public Rigidbody2D rb;
-    public SpriteRenderer sp;
-    public GameObject body;
-
+    public SpriteRenderer shadow;
     Vector2 movement;
-    float bodyPosition;
-
     float xBounds = 8f;
     float yBounds = 2.5f;
     float objWidth;
     float objHeight;
 
+    //jump variables
+    public float jumpHeight = 0f;
+    public float jumpAccelerationPerSecond;
+    public float maxJumpHeight;
+    public float maxRampJumpHeight;
+    private float baseHeight = 0f;
+    public float jumpCooldown;
+    public GameObject body;
+    float bodyPosition;
     public bool isJumping = false;
     public bool isLanding = false;
+    public bool isGrounded = true;
     public bool isRampJump = false;
 
     private void Start()
     {
         bodyPosition = body.transform.position.y - this.transform.position.y;
-        objWidth = sp.transform.GetComponent<SpriteRenderer>().bounds.size.x / 2;
-        objHeight = sp.transform.GetComponent<SpriteRenderer>().bounds.size.y / 2;
+        objWidth = shadow.transform.GetComponent<SpriteRenderer>().bounds.size.x / 2;
+        objHeight = shadow.transform.GetComponent<SpriteRenderer>().bounds.size.y / 2;
 
     }
 
     //Update is called once per frame
     void Update()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+        MoveInput();
+        JumpInput();
+    }
 
+    private void FixedUpdate()
+    {
+        Move();
+    }
+
+    private void JumpInput()
+    {
         if (isRampJump)
         {
             RampJump();
@@ -51,10 +61,13 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    private void MoveInput()
     {
-        Move();
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
     }
+
+    
 
     private void Jump()
     {
@@ -62,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
         {
             IncreaseJumpHeight(maxJumpHeight);
         }
-        else
+        else if(!isGrounded)
         {
             DecreaseJumpHeight(maxJumpHeight);
         }
@@ -73,23 +86,23 @@ public class PlayerMovement : MonoBehaviour
         //Problem: when is landing cant do Ramp Jump, but seems to be working fine
         if (!isLanding)
         {
-            IncreaseJumpHeight(5f);
+            IncreaseJumpHeight(maxRampJumpHeight);
 
         }
         else
         {
-            DecreaseJumpHeight(5f);
-
+            DecreaseJumpHeight(maxRampJumpHeight);
         }
     }
 
     private void IncreaseJumpHeight(float jumpHeightLimit)
     {
         isJumping = true;
+        isGrounded = false;
 
         if (jumpHeight < jumpHeightLimit)
         {
-            jumpHeight = Mathf.Clamp(jumpHeight + jumpAccelerationPerSecond * Time.deltaTime, minJumpHeight, jumpHeightLimit);
+            jumpHeight = Mathf.Clamp(jumpHeight + jumpAccelerationPerSecond * Time.deltaTime, baseHeight, jumpHeightLimit);
             UpdateJumpPosition(jumpHeight);
         }
         else
@@ -102,9 +115,9 @@ public class PlayerMovement : MonoBehaviour
     {
         isLanding = true;
 
-        if (jumpHeight > 0)
+        if (jumpHeight > baseHeight)
         {
-            jumpHeight = Mathf.Clamp(jumpHeight - jumpAccelerationPerSecond * Time.deltaTime, minJumpHeight, jumpHeightLimit);
+            jumpHeight = Mathf.Clamp(jumpHeight - jumpAccelerationPerSecond * Time.deltaTime, baseHeight, jumpHeightLimit);
             UpdateJumpPosition(jumpHeight);
         }
         else
@@ -122,7 +135,8 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator LandAndJumpDelay()
     {
         isRampJump = false;
-        yield return new WaitForSeconds(0.15f);
+        isGrounded = true;
+        yield return new WaitForSeconds(jumpCooldown);
         isLanding = false;
         isJumping = false;
     }
