@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9075292030786549039}
   - component: {fileID: 9075292030786549038}
   - component: {fileID: 379579370313731356}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MidPit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,6 +127,7 @@ MonoBehaviour:
   height: 0
   isHarmful: 1
   isAerial: 0
+  isCompletelySpawned: 0
 --- !u!50 &379579370313731356
 Rigidbody2D:
   serializedVersion: 4

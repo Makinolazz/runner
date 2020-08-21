@@ -166,14 +166,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
+  rb: {fileID: 187787621453805961}
+  shadow: {fileID: 187787621514245685}
   jumpHeight: 0
   jumpAccelerationPerSecond: 3.5
   maxJumpHeight: 2
-  rb: {fileID: 187787621453805961}
-  sp: {fileID: 187787621514245685}
+  maxRampJumpHeight: 5
+  jumpCooldown: 0.15
   body: {fileID: 187787620282632038}
   isJumping: 0
   isLanding: 0
+  isGrounded: 1
   isRampJump: 0
 --- !u!1 &187787621514245687
 GameObject:

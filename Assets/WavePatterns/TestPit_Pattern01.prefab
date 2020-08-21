@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7679968259626227501}
   - component: {fileID: 7679968259626227500}
   m_Layer: 0
-  m_Name: TestPit_x3Pattern01
+  m_Name: TestPit_Pattern01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,6 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25169e48913ad504488330f6df8e3402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountOfObstacles: 3
-  pattern: 010000000100000001000000
-  obstacle: 060000000600000006000000
+  amountOfObstacles: 2
+  pattern: 0100000001000000
+  obstacle: 0500000008000000

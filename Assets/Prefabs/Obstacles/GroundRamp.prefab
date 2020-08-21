@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3408002233228178682}
   - component: {fileID: 3408002233228178683}
   - component: {fileID: 6340721449432992969}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GroundRamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,6 +125,9 @@ MonoBehaviour:
   obstacleType: 4
   speed: 0
   height: 0.5
+  isHarmful: 0
+  isAerial: 0
+  isCompletelySpawned: 0
 --- !u!50 &6340721449432992969
 Rigidbody2D:
   serializedVersion: 4

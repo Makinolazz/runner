@@ -76,7 +76,7 @@ public class ObstacleSpawnController : MonoBehaviour
             {
                 GetObstacleFromPool(lanePosition, obstacleType);
             }
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(1.5f);
         }
 
         StartCoroutine(DelayForNextWave());
@@ -84,7 +84,7 @@ public class ObstacleSpawnController : MonoBehaviour
     
     IEnumerator DelayForNextWave()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3f);
         waveFinished = true;
     }
     

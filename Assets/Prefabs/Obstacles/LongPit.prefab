@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4870767309531969380}
   - component: {fileID: 4870767309531969381}
   - component: {fileID: 4264084651491331927}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LongPit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,6 +127,7 @@ MonoBehaviour:
   height: 0
   isHarmful: 1
   isAerial: 0
+  isCompletelySpawned: 0
 --- !u!50 &4264084651491331927
 Rigidbody2D:
   serializedVersion: 4

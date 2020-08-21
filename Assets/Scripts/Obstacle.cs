@@ -11,6 +11,7 @@ public class Obstacle : MonoBehaviour
     public float height;
     public bool isHarmful;
     public bool isAerial;
+    public bool isCompletelySpawned = false;
     
     private void Update()
     {
@@ -24,16 +25,22 @@ public class Obstacle : MonoBehaviour
         {
             GameController.Instance.ProcessCollisions(isHarmful, isAerial, height);
         }
-        else
+        else if (!collision.CompareTag("SpawnArea"))
         {
             HideAndRecycle();
         }
         
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        isCompletelySpawned = true;
+    }
+
     private void HideAndRecycle()
     {
         this.gameObject.SetActive(false);
+        isCompletelySpawned = false;
     }
     
     public void SetSpeed(float amount)
@@ -44,5 +51,10 @@ public class Obstacle : MonoBehaviour
     public void StopMovement()
     {
         speed = 0f; ;    
+    }
+
+    public bool CheckIfCompletelySpawned()
+    {
+        return isCompletelySpawned;
     }
 }

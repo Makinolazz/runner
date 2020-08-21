@@ -32,7 +32,7 @@ public class ObstaclePoolController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        obstaclePool = GenerateObstacles(5);
+        obstaclePool = GenerateObstacles(10);
     }
 
     private List<GameObject> GenerateObstacles(int amountOfObstacles)

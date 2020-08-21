@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6180423909371555285}
   - component: {fileID: 6180423909371555284}
   - component: {fileID: 3274158320151614950}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AirRamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,6 +127,7 @@ MonoBehaviour:
   height: 1
   isHarmful: 0
   isAerial: 1
+  isCompletelySpawned: 0
 --- !u!50 &3274158320151614950
 Rigidbody2D:
   serializedVersion: 4

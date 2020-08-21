@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 995623158548618939}
   - component: {fileID: 995623158548618938}
   - component: {fileID: 8458968004239795848}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AirBarrier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,6 +127,7 @@ MonoBehaviour:
   height: 1
   isHarmful: 1
   isAerial: 1
+  isCompletelySpawned: 0
 --- !u!50 &8458968004239795848
 Rigidbody2D:
   serializedVersion: 4

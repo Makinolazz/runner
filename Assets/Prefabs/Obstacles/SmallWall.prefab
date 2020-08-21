@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2767432008279985641}
   - component: {fileID: 2767432008279985640}
   - component: {fileID: 6832672937967482330}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SmallWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,6 +127,7 @@ MonoBehaviour:
   height: 0.5
   isHarmful: 1
   isAerial: 0
+  isCompletelySpawned: 0
 --- !u!50 &6832672937967482330
 Rigidbody2D:
   serializedVersion: 4

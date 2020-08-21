@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6121651115362264267}
   - component: {fileID: 6121651115362264266}
   - component: {fileID: 3188858773181586680}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TallWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,6 +127,7 @@ MonoBehaviour:
   height: 1.5
   isHarmful: 1
   isAerial: 0
+  isCompletelySpawned: 0
 --- !u!50 &3188858773181586680
 Rigidbody2D:
   serializedVersion: 4
