@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -71,7 +72,17 @@ public class GameController : MonoBehaviour
             //something
             isGameOver = true;
             spawnerController.ForceStopSpawning();
+
+            StartCoroutine(ReloadGame());            
         };
+    }
+
+    IEnumerator ReloadGame()
+    {
+        //Simple reload scene for testing, need to improve
+        player.GetComponent<PlayerMovement>().moveSpeed = 0;
+        yield return new WaitForSeconds(2f);
+        Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
     }
 
     private void ProcessRampJump(bool isCollision)

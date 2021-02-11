@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class ObstacleSpawnController : MonoBehaviour
 {
-    private const float DELAY_FOR_NEXT_WAVE = 3f;
-    private const float DELAY_FOR_NEXT_ROUND = 5f;
-    private const float DELAY_FOR_NEXT_OBSTACLE = 1.5f;
     private static ObstacleSpawnController _instance;
     public static ObstacleSpawnController Instance
     {
@@ -20,13 +17,16 @@ public class ObstacleSpawnController : MonoBehaviour
         }
     }
 
-    //public GameObject obstacle;
+    private const float DELAY_FOR_NEXT_WAVE = 3f;
+    private const float DELAY_FOR_NEXT_ROUND = 5f;
+    private const float DELAY_FOR_NEXT_OBSTACLE = 1.5f;
+
     public List<GameObject> laneSpawners;
     public List<GameObject> wavePatternList;
         
     float defaultObstacleSpeed = 5f;
     public float increaseSpeedValue = 1f;
-    float speedAmountToAdd;
+    public float speedAmountToAdd;
     public float maxObstacleSpeed;
     
     public bool isSpawning = false;
