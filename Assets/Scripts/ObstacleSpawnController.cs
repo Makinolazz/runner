@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class ObstacleSpawnController : MonoBehaviour
 {
+    private const float DELAY_FOR_NEXT_WAVE = 3f;
+    private const float DELAY_FOR_NEXT_ROUND = 5f;
+    private const float DELAY_FOR_NEXT_OBSTACLE = 1.5f;
     private static ObstacleSpawnController _instance;
     public static ObstacleSpawnController Instance
     {
@@ -22,7 +25,7 @@ public class ObstacleSpawnController : MonoBehaviour
     public List<GameObject> wavePatternList;
         
     float defaultObstacleSpeed = 5f;
-    public float increaseSpeedBy = 1f;
+    public float increaseSpeedValue = 1f;
     float speedAmountToAdd;
     public float maxObstacleSpeed;
     
@@ -30,7 +33,8 @@ public class ObstacleSpawnController : MonoBehaviour
     public bool waveFinished = false;
     private bool isGameOver = false;
 
-    public float timeBtwSpawn;
+    public int waveCounter = 0;
+    public int maxWavesPerRound = 3;
 
     private void Awake()
     {
@@ -58,10 +62,8 @@ public class ObstacleSpawnController : MonoBehaviour
     {
         //selects a pattern randomly
         int patternIndex = UnityEngine.Random.Range(0, wavePatternList.Count);
-        var pattern = wavePatternList[patternIndex].GetComponent<WavePattern>().pattern;
         var obstacle = wavePatternList[patternIndex].GetComponent<WavePattern>();
 
-        //StartCoroutine(StartObstacleSpawn(pattern));
         StartCoroutine(StartObstacleSpawn(obstacle));
     }
     
@@ -76,7 +78,7 @@ public class ObstacleSpawnController : MonoBehaviour
             {
                 GetObstacleFromPool(lanePosition, obstacleType);
             }
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(DELAY_FOR_NEXT_OBSTACLE);
         }
 
         StartCoroutine(DelayForNextWave());
@@ -84,10 +86,38 @@ public class ObstacleSpawnController : MonoBehaviour
     
     IEnumerator DelayForNextWave()
     {
-        yield return new WaitForSeconds(3f);
+        waveCounter++;
+        yield return new WaitForSeconds(DELAY_FOR_NEXT_WAVE);
+
+        if (waveCounter == maxWavesPerRound)
+        {
+            yield return new WaitForSeconds(DELAY_FOR_NEXT_ROUND);
+            PrepareNextRound();
+        }
+
         waveFinished = true;
     }
-    
+
+    private void PrepareNextRound()
+    {
+        waveCounter = 0;
+        speedAmountToAdd += increaseSpeedValue;
+        CheckObstacleMaxSpeedLimit();
+    }
+
+    private void CheckObstacleMaxSpeedLimit()
+    {
+        if (speedAmountToAdd > maxObstacleSpeed)
+        {
+            ResetObstaclesSpeed();
+        }
+    }
+
+    private void ResetObstaclesSpeed()
+    {
+        speedAmountToAdd = defaultObstacleSpeed;
+    }
+
     private void GetObstacleFromPool(LanePosition lanePosition, ObstacleType obstacleType)
     {
         GameObject obstacle = ObstaclePoolController.Instance.RequestObstacle(obstacleType);

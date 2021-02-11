@@ -497,13 +497,16 @@ MonoBehaviour:
   - {fileID: 2086476436}
   - {fileID: 663373751}
   wavePatternList:
-  - {fileID: 7679968259626227499, guid: 339443cdd4fc3f848a1ff2433e2f576a, type: 3}
-  - {fileID: 7679968259626227499, guid: 9dd3059e1ce323d4495a6cab3c4bb305, type: 3}
-  increaseSpeedBy: 2
+  - {fileID: 4519618752565154918, guid: dc3d2ec0e64443d47a12dbf03bfb21a0, type: 3}
+  - {fileID: 8167772418359301502, guid: 2d5ace2c1932b9d4daed52a4cbb05417, type: 3}
+  - {fileID: 989405720254552132, guid: a8cf15131432c8f4ca5eec5d04c2ad35, type: 3}
+  increaseSpeedValue: 2.5
   maxObstacleSpeed: 20
   isSpawning: 0
   waveFinished: 0
   timeBtwSpawn: 1
+  waveCounter: 0
+  maxWavesPerRound: 3
 --- !u!1 &1139541634
 GameObject:
   m_ObjectHideFlags: 0
