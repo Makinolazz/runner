@@ -956,6 +956,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerObject
       objectReference: {fileID: 0}
+    - target: {fileID: 187787621514245685, guid: 5bd81963b21e7534ab190425fb9f0834,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 187787621514245685, guid: 5bd81963b21e7534ab190425fb9f0834,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 187787621514245685, guid: 5bd81963b21e7534ab190425fb9f0834,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bd81963b21e7534ab190425fb9f0834, type: 3}
 --- !u!1 &894505177 stripped
@@ -1056,7 +1071,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0.000061035156, y: 0}
-  m_SizeDelta: {x: 657.80896, y: 226.00827}
+  m_SizeDelta: {x: 657.80896, y: 237.38196}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &944212967
 MonoBehaviour:
@@ -1157,7 +1172,17 @@ MonoBehaviour:
   - {fileID: 2086476436}
   - {fileID: 663373751}
   wavePatternList:
-  - {fileID: 1715534431747668479, guid: 7a60aa3c1abcc94438c88f0ea066bc26, type: 3}
+  - {fileID: 2500359865478839763, guid: 4407e7c8b911fbd449fd51e0d8605322, type: 3}
+  - {fileID: 2645354870946479622, guid: 20d621df7f1e9124fbb7c80da60cc933, type: 3}
+  - {fileID: 4788193235265819641, guid: be72f5153b44edc42a0bec729f9fe7db, type: 3}
+  - {fileID: 7599220358003228837, guid: 65cf744a11d4b024882a7bd1d4510999, type: 3}
+  - {fileID: 1594379917870061071, guid: 87a5a2d0ae9c4994498276d5dff0d9b8, type: 3}
+  - {fileID: 5970139620617972899, guid: 0a1005bfced29c24598ff1301741a74b, type: 3}
+  - {fileID: 4326665383148710351, guid: e92f6bedc091eca48be31b714767b3ef, type: 3}
+  - {fileID: 473488576585477882, guid: 4615ebce0e2d35847a13e3a44e823f8c, type: 3}
+  - {fileID: 5029707367672096592, guid: c794a87b75c8ab1438eea926a63eaf95, type: 3}
+  - {fileID: 4656555286874670744, guid: 5a340ab8ed901f140a384b6b84109527, type: 3}
+  - {fileID: 114931501579520220, guid: a359887ec5d73d1418c9ecd64424d070, type: 3}
   increaseSpeedValue: 2.5
   speedAmountToAdd: 0
   maxObstacleSpeed: 20

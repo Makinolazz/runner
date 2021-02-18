@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7679968259626227499
+--- !u!1 &114931501579520220
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7679968259626227501}
-  - component: {fileID: 7679968259626227500}
+  - component: {fileID: 114931501579520218}
+  - component: {fileID: 114931501579520219}
   m_Layer: 0
-  m_Name: TestRampPattern01
+  m_Name: Tallx5+Barrier+SPitx2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7679968259626227501
+--- !u!4 &114931501579520218
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7679968259626227499}
+  m_GameObject: {fileID: 114931501579520220}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,18 +31,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7679968259626227500
+--- !u!114 &114931501579520219
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7679968259626227499}
+  m_GameObject: {fileID: 114931501579520220}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25169e48913ad504488330f6df8e3402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountOfObstacles: 2
-  pattern: 0100000001000000
-  obstacle: 0400000005000000
+  amountOfObstacles: 8
+  pattern: 0000000002000000000000000200000001000000010000000100000001000000
+  obstacle: 0000000000000000000000000000000002000000060000000600000000000000
