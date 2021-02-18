@@ -131,6 +131,7 @@ public class ObstacleSpawnController : MonoBehaviour
         var obstacleList = FindObjectsOfType<Obstacle>();
         isSpawning = false;
         waveFinished = false;
+        speedAmountToAdd = 0f;
 
         foreach (var obstacle in obstacleList)
         {            

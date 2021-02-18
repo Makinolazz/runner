@@ -5,8 +5,7 @@ public class BackgroundScroller : MonoBehaviour
     public float scrollSpeed = 0f;
     public Renderer bgRend;
     public Renderer GameRoadRend;
-    //private float offset;
-    //private Material mat;
+    private float backgroundspeed = 0.05f;
 
     // Start is called before the first frame update
     void Start()
@@ -18,13 +17,13 @@ public class BackgroundScroller : MonoBehaviour
     void Update()
     {
         //speed for cave background 0.02f, need to move it to a variable
-        bgRend.material.mainTextureOffset += new Vector2(0.05f * Time.deltaTime, 0);
+        bgRend.material.mainTextureOffset += new Vector2(backgroundspeed * Time.deltaTime, 0);
         GameRoadRend.material.mainTextureOffset += new Vector2(ObstacleSpawnController.Instance.speedAmountToAdd * Time.deltaTime, 0) / 20;
 
-
-        //offset += (Time.deltaTime * scrollSpeed) / 10;
-        //offset += (ObstacleSpawnController.Instance.speedAmountToAdd * Time.deltaTime) / 18;
-        //mat.SetTextureOffset("_MainTex", new Vector2(offset, 0));
+        if (ObstacleSpawnController.Instance.speedAmountToAdd == 0)
+        {
+            backgroundspeed = 0f;
+        }
     }
 
 }

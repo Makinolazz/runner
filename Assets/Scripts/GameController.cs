@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour
     public GameObject obstacleSpawner;
     public GameObject player;
     private ObstacleSpawnController spawnerController;
+    public Canvas MenuCanvas;
     private bool isGameOver = false;
 
     private void Awake()
@@ -37,12 +38,6 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //to test spawning activation with left click
-        if (Input.GetMouseButtonDown(0))
-        {
-            spawnerController.isSpawning = true;
-        }
-
         if (spawnerController.waveFinished == true && !isGameOver)
         {
             spawnerController.isSpawning = true;
@@ -81,6 +76,7 @@ public class GameController : MonoBehaviour
     {
         //Simple reload scene for testing, need to improve
         player.GetComponent<PlayerMovement>().moveSpeed = 0;
+        player.GetComponent<PlayerMovement>().jumpAccelerationPerSecond = 0;
         yield return new WaitForSeconds(2f);
         Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
     }
@@ -108,5 +104,16 @@ public class GameController : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void StartGameBtn()
+    {
+        spawnerController.isSpawning = true;
+        MenuCanvas.GetComponent<UIController>().HideMenu();
+    }
+
+    public void QuitGameBtn()
+    {
+        Application.Quit();
     }
 }

@@ -43,6 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25169e48913ad504488330f6df8e3402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountOfObstacles: 3
-  pattern: 000000000200000001000000
-  obstacle: 000000000000000002000000
+  amountOfObstacles: 5
+  pattern: 0000000002000000000000000100000001000000
+  obstacle: 0000000004000000050000000200000003000000
