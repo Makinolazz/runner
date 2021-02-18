@@ -42,6 +42,9 @@ TagManager:
   - name: Background
     uniqueID: 138168627
     locked: 0
+  - name: MainRoad
+    uniqueID: 1582802543
+    locked: 0
   - name: Obstacle
     uniqueID: 1452551067
     locked: 0
